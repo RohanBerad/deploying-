@@ -1,0 +1,209 @@
+
+:root {
+    --bg-light-brown: #F8FAFC;
+    --bg-warm-sand: #F8FAFC;
+    --deep-crimson: #1E3A8A;
+    --golden-yellow: #F59E0B;
+    --text-dark: #1F2937;
+    --text-muted: #475569;
+}
+
+.ultra-footer {
+    background-color: var(--bg-light-brown);
+    color: var(--text-dark);
+    position: relative;
+    padding: 80px 0 30px 0;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* Top Decorative Shape */
+.footer-top-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--deep-crimson) 0%, var(--golden-yellow) 50%, var(--deep-crimson) 100%);
+}
+
+/* --- Left Column: Brand Styles --- */
+.footer-brand h2 {
+    color: var(--deep-crimson);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.footer-badge {
+    display: inline-block;
+    background-color: var(--deep-crimson);
+    color: #ffffff;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 2px solid var(--golden-yellow);
+    box-shadow: 0 4px 10px rgba(178, 34, 34, 0.15);
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Social Icons */
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    color: var(--deep-crimson);
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--bg-warm-sand);
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    background-color: var(--deep-crimson);
+    color: #ffffff;
+    transform: translateY(-3px);
+    border-color: var(--golden-yellow);
+}
+
+/* --- Center Column: Quick Links --- */
+.footer-links-box h4, 
+.footer-contact-box h4 {
+    color: var(--deep-crimson);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-links-box h4::after, 
+.footer-contact-box h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--golden-yellow);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a i {
+    font-size: 0.8rem;
+    color: var(--deep-crimson);
+    transition: transform 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--deep-crimson);
+    padding-left: 5px;
+}
+
+.footer-links a:hover i {
+    transform: translateX(3px);
+    color: var(--golden-yellow);
+}
+
+/* --- Right Column: Contact Info --- */
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: var(--bg-warm-sand);
+    border-radius: 10px;
+    color: var(--deep-crimson);
+    font-size: 1.2rem;
+    border: 1px solid var(--golden-yellow);
+    flex-shrink: 0;
+}
+
+.footer-contact-item small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-contact-item p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+/* --- Bottom Copyright Bar --- */
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 1px solid var(--bg-warm-sand);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.developer-text {
+    font-weight: 500;
+}
+
+.developer-text:hover {
+    color: var(--deep-crimson);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,42 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+<style>
+body{background:#F8F5F0}
+.adminSection{
+max-width:700px;
+margin:120px auto;
+background:white;
+border:1px solid #D4AF37;
+border-radius:20px;
+padding:30px
+}
+h2{text-align:center}
+form{display:flex;flex-direction:column;gap:15px}
+button{
+padding:14px;
+background:#14213D;
+color:white;
+border:0;
+border-radius:10px
+}
+</style>
+
+
+<div class="adminSection">
+
+<h2>Video Gallery Management</h2>
+
+<form method="POST" action="{% url 'save_video' %}" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<label>Upload Videos</label>
+
+<input type="file" name="video" accept="video/*" multiple required>
+
+<button>Save Videos</button>
+
+</form>
+
+</div>

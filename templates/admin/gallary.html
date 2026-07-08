@@ -1,0 +1,211 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery Management</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#F8F5F0;
+color:#14213D;
+}
+
+.dashboard{
+margin-left:200px;
+margin-top:100px;
+max-width:1100px;
+margin:90px auto 40px;
+padding:0 15px;
+}
+
+.adminSection{
+    margin-left:200px;
+margin-top:100px;
+background:#fff;
+border:1px solid #D4AF37;
+border-radius:20px;
+padding:30px;
+margin-bottom:25px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.adminSection h2{
+text-align:center;
+margin-bottom:25px;
+padding-bottom:12px;
+font-size:28px;
+font-weight:700;
+color:#14213D;
+border-bottom:2px solid #D4AF37;
+}
+
+.adminSection form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.adminSection label{
+font-weight:600;
+color:#14213D;
+}
+
+.adminSection input,
+.adminSection textarea{
+width:100%;
+padding:12px;
+border:1px solid #dcdcdc;
+border-radius:10px;
+font-size:15px;
+outline:none;
+}
+
+.adminSection textarea{
+min-height:120px;
+resize:vertical;
+}
+
+.adminSection input:focus,
+.adminSection textarea:focus{
+border-color:#D4AF37;
+}
+
+.adminSection button{
+padding:14px;
+border:none;
+border-radius:10px;
+background:#14213D;
+color:white;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.adminSection button:hover{
+opacity:.9;
+}
+
+@media(max-width:768px){
+
+.adminSection{
+padding:20px;
+}
+
+.adminSection h2{
+font-size:22px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+<div class="dashboard">
+    <!-- Cover Album -->
+    <div class="adminSection">
+        <h2>Cover Album Management</h2>
+        <form method="POST" action="{% url 'save_photo' %}" enctype="multipart/form-data" onsubmit="showPhotoAlert()">
+            {% csrf_token %}
+            <label>Upload Album Photos</label>
+            <input type="file" name="image" accept="image/*" multiple required onchange="validateImages(this)">
+            <button type="submit">Save Photos</button>
+        </form>
+    </div>
+    <!-- Video Gallery -->
+    <div class="adminSection">
+        <h2>Video Gallery Management</h2>
+        <form method="POST" action="{% url 'save_video' %}" enctype="multipart/form-data" onsubmit="showVideoAlert()">
+            {% csrf_token %}
+            <label>Upload Videos</label>
+            <input type="file" name="video" accept="video/*" multiple required onchange="validateVideos(this)">
+            <button type="submit">Save Videos</button>
+        </form>
+    </div>
+    <!-- Event Album -->
+    <div class="adminSection">
+        <h2>Event Album Management</h2>
+        <form method="POST" action="{% url 'save_album' %}" enctype="multipart/form-data" onsubmit="showAlbumAlert()">
+            {% csrf_token %}
+            <label>Event Heading</label>
+            <input type="text" name="heading" required>
+            <label>Event Date</label>
+            <input type="date" name="date" required>
+            <label>Event Description</label>
+            <textarea name="content" required></textarea>
+            <label>Album Images</label>
+           <input type="file" name="images" accept="image/*" multiple required onchange="validateImages(this)">
+            <button type="submit">Save Event Album</button>
+        </form>
+    </div>
+    <!-- Student Achievement -->
+    <div class="adminSection">
+        <h2>Student Achievement Management</h2>
+        <form method="POST" action="{% url 'save_achievement' %}" enctype="multipart/form-data" onsubmit="showAchievementAlert()">
+            {% csrf_token %}
+            <label>Student Name</label>
+           <input type="text" name="student_name" required>
+            <label>Year</label>
+            <input type="number" maxlength="4" name="year" required minlength="4">
+            <label>Exam / Field</label>
+            <input type="text" name="exam" required>
+            <label>Achievement / Rank</label>
+            <input type="text" name="rank_desc" required>
+            <label>Student Image</label>
+            <input type="file" name="image" accept="image/*" required onchange="validateImages(this)">
+            <button type="submit">Save Achievement</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function validateImages(input){
+    for(let file of input.files){
+        if(!file.type.startsWith("image/")){
+            alert("Only image files are allowed!");
+            input.value = "";
+            return false;
+        }
+    }
+}
+function validateVideos(input){
+    for(let file of input.files){
+        if(!file.type.startsWith("video/")){
+            alert("Only video files are allowed!");
+            input.value = "";
+            return false;
+        }
+    }
+}
+function showPhotoAlert(){
+    alert("Photos submitted successfully!");
+    return true;
+}
+function showVideoAlert(){
+    alert("Videos submitted successfully!");
+    return true;
+}
+function showAlbumAlert(){
+    alert("Event Album submitted successfully!");
+    return true;
+}
+function showAchievementAlert(){
+    alert("Achievement submitted successfully!");
+    return true;
+}
+</script>
+</body>
+</html>

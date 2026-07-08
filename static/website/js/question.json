@@ -1,0 +1,57 @@
+  [
+  {
+         "question": "What does HTML stand for?",
+         "options": [
+             "Hyper Text Markup Language",
+             "Home Tool Markup Language",
+             "Hyper Transfer Markup Language",
+             "High Text Machine Language"
+         ],
+         "answer": 0
+     },
+
+     {
+         "question": "Which language is used for styling webpages?",
+         "options": [
+             "Python",
+             "Java",
+             "CSS",
+             "PHP"
+         ],
+         "answer": 2
+     },
+
+     {
+         "question": "Bootstrap is a ?",
+         "options": [
+             "Framework",
+             "Compiler",
+             "Database",
+             "Programming Language"
+         ],
+         "answer": 0
+     },
+
+     {
+         "question": "Which company developed Java?",
+         "options": [
+             "Google",
+             "Microsoft",
+             "Sun Microsystems",
+             "Apple"
+         ],
+         "answer": 3
+     },
+
+     {
+         "question": "Which tag creates a hyperlink?",
+         "options": [
+             "div",
+             "a",
+             "p",
+             "img"
+         ],
+         "answer": 1
+     }
+    
+    ]

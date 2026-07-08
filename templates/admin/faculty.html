@@ -1,0 +1,99 @@
+{% load static %}{% include 'admin/navbar.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+.page-wrapper{display:flex;margin-left:295px;margin-top:80px;}
+.form-container{flex:1;max-width:900px;margin:0 auto;padding:15px}
+.row-2{display:flex;gap:10px}
+.form-group{flex:1;display:flex;flex-direction:column;margin-bottom:8px}
+label{font-size:13px;margin-bottom:4px}
+input,textarea{padding:8px;border:1px solid #ddd;border-radius:5px;outline:none;font-size:14px}
+input:focus,textarea:focus{border-color:#EA580C}
+h2{margin:0 0 10px}
+h3{margin:10px 0}
+.btn-save{background:#EA580C;color:#fff;padding:10px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px}
+.btn-save:hover{background:#c2410c}
+hr{margin:10px 0}
+@media(max-width:768px){.row-2{flex-direction:column}}
+</style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <div class="form-container">
+
+        <h2>Add Faculty</h2>
+
+        <form method="POST" enctype="multipart/form-data" action="{% url 'add_faculty' %}">
+            {% csrf_token %}
+
+            <div class="row-2">
+
+                <div class="form-group">
+                    <label>Faculty Name</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Designation</label>
+                    <input type="text" name="designation" placeholder="Ex: Police Bharti Expert" required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Short Description</label>
+                <textarea name="description" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>About Faculty</label>
+                <textarea name="about_faculty" rows="4"></textarea>
+            </div>
+
+            <div class="row-2">
+
+                <div class="form-group">
+                    <label>Faculty Image</label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h3>Statistics</h3>
+
+            <div class="row-2">
+
+                <div class="form-group">
+                    <label>Years Experience</label>
+                    <input type="text" name="years_experience" placeholder="Ex: 12+">
+                </div>
+
+                <div class="form-group">
+                    <label>Students Guided</label>
+                    <input type="text" name="students_guided" placeholder="Ex: 5000+">
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-save">
+                Save Faculty
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+
+<style>
+body{background:#F8F5F0}
+
+.adminSection{
+max-width:700px;
+margin:120px auto;
+background:white;
+border:1px solid #D4AF37;
+border-radius:20px;
+padding:30px
+}
+
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px
+}
+
+
+input{
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd
+}
+
+
+button{
+padding:14px;
+background:#14213D;
+color:white;
+border:0;
+border-radius:10px
+}
+
+</style>
+
+
+<div class="adminSection">
+
+
+<h2>
+Student Achievement Management
+</h2>
+
+
+<form method="POST" action="{% url 'save_achievement' %}" enctype="multipart/form-data">
+
+
+{% csrf_token %}
+
+
+<label>Student Name</label>
+
+<input type="text" name="student_name" required>
+
+
+<label>Year</label>
+
+<input type="number" name="year" required>
+
+
+<label>Exam / Field</label>
+
+<input type="text" name="exam" required>
+
+
+<label>Achievement / Rank</label>
+
+<input type="text" name="rank_desc" required>
+
+
+<label>Student Image</label>
+
+<input type="file" name="image" accept="image/*" required>
+
+
+<button>
+Save Achievement
+</button>
+
+
+</form>
+
+
+</div>

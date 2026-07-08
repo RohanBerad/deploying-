@@ -1,0 +1,112 @@
+{% include 'admin/navbar.html' %}
+
+<style>
+.form-card{
+    width:100%;
+    max-width:1000px;
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    margin:50px 350px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:0;
+}
+
+.form-control{
+    width:100%;
+    height:45px;
+    border:1px solid #161616;
+    border-radius:10px;
+    padding:0 15px;
+}
+
+.full-width{
+    grid-column:1/3;
+}
+
+textarea.form-control{
+    height:80px;
+    padding:10px;
+}
+
+.save-btn{
+    width:200px;
+    height:45px;
+    border:none;
+    background:#1d4ed8;
+    color:#fff;
+    border-radius:10px;
+    font-weight:600;
+}
+</style>
+
+   <div class="form-section">
+
+      <div class="form-card">
+
+         <h2>Add New Course</h2>
+
+         <form method="post">
+               {% csrf_token %}
+
+             <div class="form-grid">
+
+    <div class="form-group">
+        <label>Header Name</label>
+        <input type="text" name="header" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Fee</label>
+        <input type="text" name="fee" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Small Description</label>
+        <input type="text" name="small_discription" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Starting Date</label>
+        <input type="date" name="date" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Course Duration</label>
+        <input type="number" required min="1" max="12" name="total_time" class="form-control" placeholder="add only Months">
+    </div>
+
+
+    <div class="form-group">
+        <label>Benefits</label>
+        <input type="text" name="info_fee" class="form-control">
+    </div>
+
+    <div class="full-width">
+        <label>Add Subjects</label>
+        <textarea name="info_study" class="form-control"></textarea>
+    </div>
+
+
+
+</div>
+
+<br>
+
+<button class="save-btn">Save Course</button>
+
+         </form>
+
+      </div>
+
+   </div>
+
+{% include 'admin/footer.html' %}

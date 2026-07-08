@@ -1,0 +1,127 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Add Photos</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#F8F5F0;
+}
+
+.adminSection{
+max-width:700px;
+margin:120px auto 40px;
+background:white;
+border:1px solid #D4AF37;
+border-radius:20px;
+padding:30px;
+box-shadow:0 8px 20px #0002;
+}
+
+h2{
+text-align:center;
+color:#14213D;
+border-bottom:2px solid #D4AF37;
+padding-bottom:15px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input{
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+button{
+padding:14px;
+background:#14213D;
+color:white;
+border:0;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#D4AF37;
+color:#14213D;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="adminSection">
+
+<h2>Cover Album Management</h2>
+
+
+<form method="POST" action="{% url 'save_photo' %}" enctype="multipart/form-data" onsubmit="successMsg()">
+
+{% csrf_token %}
+
+
+<label>Upload Album Photos</label>
+
+<input type="file" name="image" accept="image/*" multiple required onchange="checkImage(this)">
+
+
+<button>
+Save Photos
+</button>
+
+
+</form>
+
+</div>
+
+
+<script>
+
+function checkImage(input){
+
+for(let file of input.files){
+
+if(!file.type.startsWith("image/")){
+
+alert("Only images allowed");
+
+input.value="";
+
+return;
+
+}
+
+}
+
+}
+
+
+function successMsg(){
+
+alert("Photos submitted successfully!");
+
+}
+
+</script>
+
+
+</body>
+</html>

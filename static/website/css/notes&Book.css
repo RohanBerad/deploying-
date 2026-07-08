@@ -1,0 +1,442 @@
+:root {
+    --primary: #ea580c;
+    --secondary: #1e3a8a;
+    --accent: #fbbf24;
+    --bg: #fff7ed;
+    --card: #ffffff;
+    --text: #374151;
+}
+
+
+/* Main */
+
+.materialHub {
+    padding: 90px 20px;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at top left, #fed7aa, transparent 35%),
+        linear-gradient(135deg,#fff7ed,#eef5ff);
+
+    overflow: hidden;
+}
+
+
+/* Header */
+
+.hubTitle {
+    text-align:center;
+    margin-bottom:70px;
+}
+
+
+.hubTitle span {
+
+    display:inline-flex;
+    padding:12px 28px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.8);
+
+    color:var(--primary);
+
+    font-weight:800;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.08);
+
+    backdrop-filter:blur(10px);
+}
+
+
+
+.hubTitle h2 {
+
+    font-size:55px;
+
+    margin:25px 0 15px;
+
+    color:var(--secondary);
+
+    font-weight:900;
+
+    letter-spacing:-1px;
+
+}
+
+
+
+.hubTitle p {
+
+    color:#64748b;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+/* Section */
+
+
+.courseSection {
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:45px;
+
+
+ 
+
+}
+
+
+
+.courseSection h2 {
+
+    text-align:center;
+
+    color:var(--secondary);
+
+    font-size:34px;
+    
+    margin-bottom:45px;
+     
+    text-decoration: underline ;
+}
+
+
+
+
+
+/* Grid */
+
+
+.materialGrid {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:30px;
+
+}
+
+
+
+
+
+/* Card */
+
+
+.materialCard {
+
+    background:white;
+
+    padding:35px 28px;
+
+    border-radius:30px;
+
+    text-align:center;
+    
+    position:relative;
+
+    overflow:hidden;
+
+   border: 1px solid black;
+
+
+    transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+
+
+}
+
+
+
+.materialCard::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:220px;
+    height:220px;
+
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--accent),
+    var(--primary)
+    );
+
+
+    opacity:.12;
+
+
+    border-radius:50%;
+
+
+    top:-110px;
+    right:-110px;
+
+
+}
+
+
+
+.materialCard:hover {
+
+
+    transform:
+    translateY(-15px);
+
+
+    box-shadow:
+
+    0 35px 70px rgba(0,0,0,.18);
+
+}
+
+
+
+
+
+/* Icon */
+
+
+.cardIcon {
+
+
+    width:95px;
+    height:95px;
+
+
+    margin:auto;
+
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+
+    font-size:48px;
+
+
+    border-radius:28px;
+
+
+    color:white;
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--accent)
+    );
+
+
+    box-shadow:
+
+    0 20px 40px rgba(234,88,12,.35);
+
+
+    transition:.3s;
+
+}
+
+
+
+.materialCard:hover .cardIcon {
+
+    transform:
+    rotate(8deg)
+    scale(1.1);
+
+}
+
+
+
+
+
+/* Text */
+
+
+.materialCard h3 {
+
+
+    margin-top:25px;
+
+
+    font-size:26px;
+
+
+    color:var(--secondary);
+
+}
+
+
+
+.materialCard p {
+
+
+    color:#64748b;
+
+
+    line-height:1.8;
+
+
+    min-height:75px;
+
+}
+
+
+
+
+
+/* Button */
+
+
+.viewBtn {
+
+
+    margin-top:25px;
+
+
+    display:inline-flex;
+
+
+    padding:14px 38px;
+
+
+    border-radius:999px;
+
+
+    color:white !important;
+
+
+    text-decoration:none !important;
+
+
+    font-weight:800;
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--secondary),
+    #2563eb
+    );
+
+
+    box-shadow:
+
+    0 12px 25px rgba(37,99,235,.25);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.viewBtn:hover {
+
+
+    transform:
+    translateY(-3px)
+    scale(1.05);
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--accent)
+    );
+
+
+}
+
+
+
+
+
+/* Responsive */
+
+
+@media(max-width:1000px){
+
+
+.materialGrid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+.materialHub{
+
+padding:60px 15px;
+
+}
+
+
+
+.hubTitle h2{
+
+font-size:36px;
+
+}
+
+
+
+.courseSection{
+
+padding:25px;
+
+}
+
+
+
+.materialGrid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.materialCard{
+
+padding:30px 20px;
+
+}
+
+
+}
