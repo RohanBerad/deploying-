@@ -1,0 +1,111 @@
+{% include "website/pages/navbar.html" %}
+
+    <body>
+        <section class="admissionSection">
+
+            <div class="admissionLeft">
+
+                <span>🎓 प्रवेश सुरू</span>
+
+                <h2>
+                    Admission Open 2026
+                </h2>
+
+                <p>
+                    Police Bharti, MPSC, Talathi, ZP Bharti आणि इतर
+                    स्पर्धा परीक्षांसाठी प्रवेश प्रक्रिया सुरू आहे.
+                </p>
+
+                <div class="admissionPoints">
+
+                    <div>✅ अनुभवी शिक्षक</div>
+                    <div>✅ Daily Test Series</div>
+                    <div>✅ Mock Test Portal</div>
+                    <div>✅ Study Material</div>
+                    <div>✅ Online + Offline Batch</div>
+
+                </div>
+
+                <button onclick="showAdmissionInfo()">
+                    अधिक माहिती
+                </button>
+
+            </div>
+
+            <div class="admissionRight">
+
+                <h3>📋 प्रवेश अर्ज</h3>
+
+                <form id="admissionForm">
+
+                    <input type="text" placeholder="पूर्ण नाव" required>
+
+                    <input type="tel" placeholder="मोबाईल नंबर" required>
+
+                    <input type="email" placeholder="ईमेल आयडी">
+
+                    <select required>
+
+                        <option value="">
+                            कोर्स निवडा
+                        </option>
+
+                        <option>
+                            Police Bharti
+                        </option>
+
+                        <option>
+                            MPSC
+                        </option>
+
+                        <option>
+                            Talathi
+                        </option>
+
+                        <option>
+                            ZP Bharti
+                        </option>
+
+                    </select>
+
+                    <textarea placeholder="अधिक माहिती">
+            </textarea>
+
+                    <button type="submit">
+                        प्रवेशासाठी अर्ज करा
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <div class="admissionPopup" id="admissionPopup">
+
+            <div class="popupBox">
+
+                <span class="closePopup" onclick="closeAdmissionInfo()">
+                    &times;
+                </span>
+
+                <h3>
+                    🎓 प्रवेश प्रक्रिया
+                </h3>
+
+                <p>
+                    प्रवेशासाठी अर्ज भरल्यानंतर आमची टीम
+                    तुमच्याशी संपर्क साधेल.
+                    आवश्यक कागदपत्रे, फी स्ट्रक्चर आणि
+                    बॅच टाइमिंगची माहिती दिली जाईल.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </body>
+
+ {% include "website/pages/footer.html" %}

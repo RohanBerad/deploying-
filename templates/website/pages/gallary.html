@@ -1,0 +1,498 @@
+{% include "website/pages/navbar.html" %}
+
+<body>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#F8F5F0;
+    color:#14213D;
+}
+section{
+    border:1px solid #D4AF37;
+}
+/* ================= BANNER ================= */
+.banner{
+background:
+linear-gradient(
+rgba(0,51,102,.65),
+rgba(0,102,204,.35)
+),
+url("https://nalagolahighschool.com/public/images/gallery.jpg");
+background-size:cover;
+background-position:center;
+height:260px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.banner h1{
+color:white;
+font-size:35px;
+background:rgba(0,0,0,.45);
+padding:20px 40px;
+border-radius:20px;
+}
+/* ================= SECTIONS ================= */
+.galleryHub,
+.videoHub,
+.eventAlbum,
+.achievementGrid{
+margin:40px 15px;
+padding:40px 20px;
+background:white;
+border:1px solid #dbe9f5;
+border-radius:25px;
+box-shadow:
+0 8px 25px rgba(0,51,102,.12);
+}
+/* ================= TITLES ================= */
+.sectionTitle,
+.eventHeading{
+text-align:center;
+margin-bottom:35px;
+}
+.sectionTitle h2,
+.eventHeading h2{
+color:#003366;
+font-size:30px;
+}
+.sectionTitle span{
+display:block;
+height:4px;
+width:80px;
+background:#ff9900;
+margin:15px auto;
+border-radius:20px;
+}
+/* ================= SLIDER ================= */
+.sliderBox{
+overflow:hidden;
+}
+.sliderTrack{
+display:flex;
+gap:20px;
+transition:.5s;
+}
+.card{
+    min-width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    border-radius:20px;
+    border:1px solid #ddd;
+}
+
+.card img,
+.card video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.nextBtn{
+margin-top:25px;
+padding:12px 35px;
+border:none;
+border-radius:30px;
+background:
+linear-gradient(
+45deg,
+#0066cc,
+#00bfff
+);
+color:white;
+cursor:pointer;
+}
+/* ================= EVENT ================= */
+.eventAlbum{
+padding:50px 20px;
+background:
+linear-gradient(
+135deg,
+#fff8ec,
+#ffffff
+);
+margin:40px 15px;
+border-radius:25px;
+border:1px solid #ffe0b2;
+box-shadow:
+0 8px 25px rgba(0,0,0,.12);
+}
+.eventTimeline{
+display:grid;
+grid-template-columns:1fr;
+gap:80px 25px;
+}
+.eventBox{
+background:white;
+padding:35px 25px 25px;
+border-radius:25px;
+border:1px solid #eee;
+box-shadow:
+0 10px 25px rgba(0,0,0,.12);
+position:relative;
+text-align:center;
+}
+.eventDate{
+height:100px;
+width:100px;
+border-radius:50%;
+background:
+linear-gradient(
+135deg,
+#0066cc,
+#00bfff
+);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+position:absolute;
+top:-50px;
+left:50%;
+transform:translateX(-50%);
+border:6px solid white;
+box-shadow:
+0 5px 15px rgba(0,0,0,.2);
+}
+.eventContent{
+margin-top:25px;
+}
+.eventContent h3{
+color:#003366;
+}
+.eventContent button{
+background:
+linear-gradient(
+45deg,
+#ff7a00,
+#ffcc00
+);
+border:none;
+padding:12px 35px;
+border-radius:30px;
+color:white;
+cursor:pointer;
+}
+/* ================= ACHIEVEMENT ================= */
+.achievementGrid{
+display:grid;
+grid-template-columns:1fr;
+gap:25px;
+}
+.achievementItem{
+height:330px;
+overflow:hidden;
+border-radius:20px;
+cursor:pointer;
+position:relative;
+}
+.achievementItem img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.achievementOverlay{
+position:absolute;
+bottom:0;
+width:100%;
+padding:20px;
+color:white;
+background:
+linear-gradient(
+transparent,
+rgba(0,51,102,.9)
+);
+}
+/* ================= MODALS ================= */
+/* ================= MODALS ================= */
+.eventModal,
+.achievementModal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+}
+.eventModalBox,
+.achievementBox{
+    position:relative;
+    background:white;
+    width:80%;
+    max-height:90%;
+    border-radius:20px;
+    overflow:hidden;
+    padding:20px;
+}
+/* Event images container */
+#eventImages{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+    max-height:75vh;
+    overflow-y:auto;
+    padding:10px;
+}
+/* Event images */
+#eventImages img{
+    width:290px;
+    height:290px;
+    object-fit:cover;
+    border-radius:12px;
+    margin:0;
+    display:block;
+}
+/* Close buttons */
+.closeEvent,
+.closeAchievement{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:red;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    border-radius:50%;
+    cursor:pointer;
+    z-index:10000;
+}
+/* Achievement modal */
+.achievementBox{
+    text-align:center;
+}
+.achievementBox img{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+}
+/* ================= TABLET ================= */
+@media(min-width:768px){
+.card{
+min-width:350px;
+height:350px;
+}
+.eventTimeline{
+grid-template-columns:repeat(2,1fr);
+}
+.achievementGrid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+/* ================= DESKTOP ================= */
+@media(min-width:1200px){
+.card{
+min-width:400px;
+height:400px;
+}
+.eventTimeline{
+grid-template-columns:repeat(3,1fr);
+}
+.achievementGrid{
+grid-template-columns:repeat(4,1fr);
+}
+}
+</style>
+
+<section class="banner">
+<h1>मीडिया गॅलरी</h1>
+</section>
+
+<section class="galleryHub">
+<div class="sectionTitle">
+<h2>Latest Photo Gallery</h2>
+<span></span>
+</div>
+<div class="sliderBox">
+<div class="sliderTrack" id="photoTrack">
+{% for photo in photos %}
+<div class="card">
+<img src="{{photo.image.url}}">
+</div>
+{% endfor %}
+</div>
+</div>
+<button class="nextBtn" onclick="slide('photoTrack')">
+Next ➜
+</button>
+</section>
+
+
+<section class="videoHub">
+<div class="sectionTitle">
+<h2>Latest Video Gallery</h2>
+<span></span>
+</div>
+<div class="sliderBox">
+    <div class="sliderTrack" id="videoTrack">
+        {% for video in videos %}
+       <div class="card">
+           <video controls>
+                <source src="{{video.video.url}}">
+            </video>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<button class="nextBtn" onclick="slide('videoTrack')">
+    Next ➜
+</button>
+
+</section>
+
+<section class="eventAlbum">
+    <div class="eventHeading">
+        <h2 class="mb-5">Event Album</h2>
+    </div>
+    <div class="eventTimeline mt-5">
+        {% for album in albums %}
+        <div class="eventBox">
+            <div class="eventDate">
+                {{album.date}}
+            </div>
+            <div class="eventContent" >
+                <h3>{{album.heading}}</h3>
+                <p>{{album.content}}</p>
+                <button onclick="openEventGallery({{album.images|safe}})">
+                    View Album
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+<section class="galleryHub">
+    <div class="sectionTitle">
+        <h2>Student Achievement</h2>
+        <span></span>
+    </div>
+    <div class="achievementGrid">
+        {% for a in achievements %}
+        <div class="achievementItem"
+            onclick="openAchievement(
+            '{{a.student_name|escapejs}}',
+            '{{a.exam|escapejs}}',
+            '{{a.rank_desc|escapejs}}',
+            '{{a.image.url}}'
+        )">
+            <img src="{{a.image.url}}" alt="{{a.student_name}}">
+            <div class="achievementOverlay">
+                <h3>{{a.student_name}}</h3>
+                <span>{{a.exam}}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+<div class="eventModal" id="eventModal"  style="margin-top:50px;">
+    <div class="eventModalBox">
+        <span class="closeEvent" onclick="closeEventGallery()">×</span>
+        <div id="eventImages"></div>
+    </div>
+</div>
+
+
+
+<div class="achievementModal" id="achievementModal" style="margin-top:50px;">
+    <div class="achievementBox">
+        <span class="closeAchievement" onclick="closeAchievement()">×</span>
+        <img id="achievementImage">
+        <h3 id="achievementName"></h3>
+        <h4 id="achievementExam"></h4>
+        <p id="achievementDesc"></p>
+    </div>
+</div>
+
+<script>
+let pos = {};
+function slide(id){
+    let box = document.getElementById(id);
+    let move = box.children[0].offsetWidth + 20;
+    pos[id] = (pos[id] || 0) - move;
+    if(Math.abs(pos[id]) >= box.scrollWidth){
+        pos[id] = 0;
+    }
+    box.style.transform =
+    `translateX(${pos[id]}px)`;
+}
+function openEventGallery(images){
+
+    const eventImages = document.getElementById("eventImages");
+    const eventModal = document.getElementById("eventModal");
+
+    if(!eventImages || !eventModal){
+        console.log("Modal element missing");
+        return;
+    }
+
+    eventImages.innerHTML = "";
+
+    images.forEach(i => {
+        eventImages.innerHTML += `
+            <img src="${i}" alt="event image">
+        `;
+    });
+
+    eventModal.style.display = "flex";
+}
+    const eventImages =document.getElementById("eventImages");
+    const eventModal =document.getElementById("eventModal");
+    eventImages.innerHTML = "";
+    images.forEach(i => {
+        eventImages.innerHTML +=
+        `<img src="${i}" alt="">`;
+    });
+    eventModal.style.display = "flex";
+
+function closeEventGallery(){
+    document.getElementById("eventModal")
+    .style.display = "none";
+}
+function openAchievement(n,e,d,i){
+    document.getElementById("achievementName").innerHTML = n;
+    document.getElementById("achievementExam").innerHTML = e;
+    document.getElementById("achievementDesc").innerHTML = d;
+    document.getElementById("achievementImage").src = i;
+    document.getElementById("achievementModal").style.display = "flex";
+}
+function closeAchievement(){
+    document.getElementById("achievementModal")
+    .style.display = "none";
+}
+window.onclick = function(event){
+    const eventModal =
+    document.getElementById("eventModal");
+    const achievementModal =
+    document.getElementById("achievementModal");
+    if(event.target === eventModal){
+        closeEventGallery();
+    }
+    if(event.target === achievementModal){
+        closeAchievement();
+    }
+}
+</script>
+{% include "website/pages/footer.html" %}
+</body>

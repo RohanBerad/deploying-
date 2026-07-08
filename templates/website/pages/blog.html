@@ -1,0 +1,64 @@
+{% include "website/pages/navbar.html" %}
+    <body>
+        <section class="examKnowledge">
+
+            <div class="knowledgeLeft">
+
+                <div class="knowledgeMenu active" onclick="showTopic('affairs',this)">
+                    📰 Current Affairs
+                </div>
+
+                <div class="knowledgeMenu" onclick="showTopic('tips',this)">
+                    📖 Preparation Tips
+                </div>
+
+                <div class="knowledgeMenu" onclick="showTopic('strategy',this)">
+                    🎯 Strategy Articles
+                </div>
+
+                <div class="knowledgeMenu" onclick="showTopic('calendar',this)">
+                    📅 Exam Calendar
+                </div>
+
+            </div>
+
+            <div class="knowledgeRight" id="knowledgeRight">
+
+                <span>Latest Updates</span>
+
+                <h2>
+                    📰 चालू घडामोडी
+                </h2>
+
+                <p>
+                    राष्ट्रीय, आंतरराष्ट्रीय, क्रीडा,
+                    अर्थव्यवस्था आणि महाराष्ट्रातील
+                    महत्त्वाच्या चालू घडामोडी.
+                </p>
+
+                <button onclick="openPopup('affairs')">
+                    अधिक वाचा
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <div class="infoPopup" id="infoPopup">
+
+            <div class="popupContent">
+
+                <span class="closePopup" onclick="closePopup()">
+                    &times;
+                </span>
+
+                <div id="popupData"></div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+ {% include "website/pages/footer.html" %}

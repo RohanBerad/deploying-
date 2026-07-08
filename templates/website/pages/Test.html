@@ -1,0 +1,122 @@
+{% include "website/pages/navbar.html" %}
+
+    <body>
+<section class="testCenter">
+
+    <div class="testCenterTitle">
+
+        <span>📝 टेस्ट सेंटर</span>
+
+        <h2>Create Test</h2>
+
+        <p>
+            विद्यार्थ्यांसाठी दैनिक, साप्ताहिक आणि Mock Test सुविधा
+        </p>
+
+    </div>
+
+    <div class="testTabs">
+
+        <button class="tabBtn active"
+            onclick="showTest('daily',this)">
+            📝 Daily Test
+        </button>
+
+        <button class="tabBtn"
+            onclick="showTest('weekly',this)">
+            📅 Weekly Test
+        </button>
+
+        <button class="tabBtn"
+            onclick="showTest('mock',this)">
+            🎯 Mock Test
+        </button>
+
+        <button class="tabBtn"
+            onclick="showTest('analysis',this)">
+            📊 Result Analysis
+        </button>
+
+        <button class="tabBtn"
+            onclick="showTest('leaderboard',this)">
+            🏆 Leaderboard
+        </button>
+
+    </div>
+
+    <div class="testInfo" id="testInfo">
+
+        <h3>📝 Daily Test</h3>
+
+        <p>
+            दररोज नवीन प्रश्नसंच उपलब्ध.
+            विद्यार्थ्यांनी नियमित सराव करून तयारी मजबूत करावी.
+        </p>
+
+        <a href="#">टेस्ट सुरू करा</a>
+
+    </div>
+
+</section>
+
+    </body>
+    <script>
+        
+const testData = {
+
+    daily: {
+        title: "📝 Daily Test",
+        text: "दररोज नवीन प्रश्नसंच उपलब्ध. विद्यार्थ्यांनी नियमित सराव करून तयारी मजबूत करावी.",
+        link: "/quetion_solvingUI/"
+    },
+
+    weekly: {
+        title: "📅 Weekly Test",
+        text: "आठवडाभराच्या अभ्यासाचे मूल्यांकन करणारी विशेष टेस्ट.",
+        link: "/quetion_solvingUI/"
+    },
+
+    mock: {
+        title: "🎯 Mock Test",
+        text: "खऱ्या परीक्षेप्रमाणे अनुभव देणारी पूर्ण Mock Test.",
+        link: "/quetion_solvingUI/"
+    },
+
+    analysis: {
+        title: "📊 Result Analysis",
+        text: "तुमचे गुण, चुका आणि सुधारणा करण्याच्या संधींचे विश्लेषण.",
+        link: "/Test_result/"
+    },
+
+    leaderboard: {
+        title: "🏆 Leaderboard",
+        text: "राज्यभरातील विद्यार्थ्यांमध्ये तुमची रँक आणि स्थान पाहा.",
+        link: "/#/"
+    }
+
+};
+
+function showTest(type, btn) {
+    console.log(type);
+
+    document
+        .querySelectorAll(".tabBtn")
+        .forEach(tab => tab.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    const currentTest = testData[type];
+
+    document.getElementById("testInfo").innerHTML = `
+        <h3>${currentTest.title}</h3>
+        <p>${currentTest.text}</p>
+        <a href="${currentTest.link}">
+            सुरू करा
+        </a>
+    `;
+}
+console.log(showTest)
+
+    </script>
+
+ {% include "website/pages/footer.html" %}

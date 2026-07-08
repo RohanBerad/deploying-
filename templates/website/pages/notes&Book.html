@@ -1,0 +1,82 @@
+{% load static %}
+{% include "website/pages/navbar.html" %}
+
+<body>
+
+    <section class="materialHub">
+
+
+        <div class="hubTitle">
+
+            <span>📚 Study Material Hub</span>
+
+            <h2>
+                All Competitive Exam Courses
+            </h2>
+
+            <p>
+                MPSC, Police, Banking, Railway, SSC आणि सर्व परीक्षांसाठी अभ्यास साहित्य
+            </p>
+
+        </div>
+
+
+        {% for course in courses %}
+
+
+        <div class="courseSection">
+
+
+            <h2>
+                {{course.header}} Course
+            </h2>
+
+
+            <div class="materialGrid">
+
+
+                {% for i in course.books_notes_set.all %}
+
+
+                <div class="materialCard">
+
+
+                    <div class="cardIcon">
+
+                        <icons class="{{i.icons}}"></icons>
+
+                    </div>
+
+
+                    <h3>
+                        {{i.title}}
+                    </h3>
+
+
+                    <div class="cardButtons">
+
+
+                        <a href="{{i.files.url}}" download class="viewBtn">
+
+                            ⬇ Download
+
+                        </a>
+
+                    </div>
+           
+                </div>
+             {% empty %}
+       <li style=" color: gray; font-style: italic;">No items found.</li>
+
+                {% endfor %}
+         
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</body>
+ {% include "website/pages/footer.html" %}

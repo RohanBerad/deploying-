@@ -1,0 +1,225 @@
+{% include "website/pages/navbar.html" %}
+
+    <body>
+        <section class="student-selection">
+
+            <div class="section-title">
+                <span>🏆 आमचे यशस्वी विद्यार्थी</span>
+                <h2>Latest Student Selection</h2>
+                <p>अकॅडमीच्या विद्यार्थ्यांनी मिळवलेले उल्लेखनीय यश</p>
+            </div>
+
+            <div class="students-grid">
+
+                <!-- Student 1 -->
+                <div class="student-card" onclick="toggleStory(this)">
+
+                    <div class="student-image">
+                        <img src="https://i.pinimg.com/236x/92/19/4d/92194db5573b0c698d848de4708f433b.jpg" alt="">
+                        <div class="rank-badge">Rank 12</div>
+                    </div>
+
+                    <div class="student-info">
+                        <h3>रोहित पाटील</h3>
+                        <span>पोलीस भरती 2026</span>
+
+                        <div class="story-box">
+                            <p>
+                                नियमित अभ्यास, सराव परीक्षा आणि अकॅडमीच्या मार्गदर्शनामुळे
+                                मला पोलीस भरती परीक्षेत यश मिळाले.
+                            </p>
+                        </div>
+
+                        <button>यशोगाथा वाचा</button>
+                    </div>
+
+                </div>
+
+                <!-- Student 2 -->
+                <div class="student-card" onclick="toggleStory(this)">
+
+                    <div class="student-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqFQGbPeBZHuSKibC_hc2OG2nzApXaq4i6VQ&s"
+                            alt="">
+                        <div class="rank-badge">Rank 08</div>
+                    </div>
+
+                    <div class="student-info">
+                        <h3>पूजा शिंदे</h3>
+                        <span>तलाठी भरती</span>
+
+                        <div class="story-box">
+                            <p>
+                                योग्य नियोजन आणि शिक्षकांच्या सततच्या मार्गदर्शनामुळे
+                                मी तलाठी परीक्षेत उत्तम यश मिळवले.
+                            </p>
+                        </div>
+
+                        <button>यशोगाथा वाचा</button>
+                    </div>
+
+                </div>
+
+                <!-- Student 3 -->
+                <div class="student-card" onclick="toggleStory(this)">
+
+                    <div class="student-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROu0RWcRcKgLrG1u0k9moxNfOsO1yA80zvCA&s"
+                            alt="">
+                        <div class="rank-badge">Rank 05</div>
+                    </div>
+
+                    <div class="student-info">
+                        <h3>सागर जाधव</h3>
+                        <span>MPSC</span>
+
+                        <div class="story-box">
+                            <p>
+                                सातत्यपूर्ण मेहनत, टेस्ट सिरीज आणि योग्य रणनीतीमुळे
+                                मला MPSC मध्ये यश मिळाले.
+                            </p>
+                        </div>
+
+                        <button>यशोगाथा वाचा</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="resultShowcase">
+
+            <div class="titleBox">
+                <span>🏆 आमचे निकाल</span>
+                <h2>यशाची परंपरा कायम</h2>
+                <p>
+                    विद्यार्थ्यांच्या मेहनतीला आणि योग्य मार्गदर्शनाला मिळालेले यश
+                </p>
+            </div>
+
+            <div class="resultGrid">
+
+                <!-- Police -->
+                <div class="resultItem">
+
+                    <div class="topArea">
+                        <div class="iconBox">
+                            👮
+                        </div>
+
+                        <div>
+                            <h3>पोलीस भरती</h3>
+                            <span>Police Bharti 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="number">
+                        48+
+                    </div>
+
+                    <p>
+                        विद्यार्थ्यांची अंतिम निवड
+                    </p>
+
+                    <button onclick="openResult(this)">
+                        संपूर्ण माहिती
+                    </button>
+
+                    <div class="hiddenResult">
+                        <h4>पोलीस भरती निकाल</h4>
+
+                        <ul>
+                            <li>✅ 48 विद्यार्थ्यांची निवड</li>
+                            <li>✅ 82% यशाचे प्रमाण</li>
+                            <li>✅ जिल्हास्तरीय गुणवत्ता यादी</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- MPSC -->
+                <div class="resultItem">
+
+                    <div class="topArea">
+                        <div class="iconBox">
+                            📚
+                        </div>
+
+                        <div>
+                            <h3>MPSC</h3>
+                            <span>MPSC Result 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="number">
+                        26+
+                    </div>
+
+                    <p>
+                        विद्यार्थ्यांची निवड
+                    </p>
+
+                    <button onclick="openResult(this)">
+                        संपूर्ण माहिती
+                    </button>
+
+                    <div class="hiddenResult">
+                        <h4>MPSC निकाल</h4>
+
+                        <ul>
+                            <li>✅ 26 विद्यार्थ्यांची निवड</li>
+                            <li>✅ राज्य गुणवत्ता यादी</li>
+                            <li>✅ उत्कृष्ट यश</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Talathi -->
+                <div class="resultItem">
+
+                    <div class="topArea">
+                        <div class="iconBox">
+                            🏅
+                        </div>
+
+                        <div>
+                            <h3>तलाठी भरती</h3>
+                            <span>Talathi Result 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="number">
+                        34+
+                    </div>
+
+                    <p>
+                        विद्यार्थ्यांची निवड
+                    </p>
+
+                    <button onclick="openResult(this)">
+                        संपूर्ण माहिती
+                    </button>
+
+                    <div class="hiddenResult">
+                        <h4>तलाठी निकाल</h4>
+
+                        <ul>
+                            <li>✅ 34 विद्यार्थ्यांची निवड</li>
+                            <li>✅ 78% यशाचे प्रमाण</li>
+                            <li>✅ जिल्हास्तरीय यश</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </body>
+{% include "website/pages/footer.html" %}

@@ -1,0 +1,225 @@
+{% include 'admin/navbar.html' %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--navy:#133892;
+--gold:#FF9100;
+}
+
+.container-box{
+padding:5px;
+margin-left:290px;
+margin-top:80px;
+background:#f8f8f8;
+}
+
+.card{
+background:white;
+padding:8px;
+border:1px solid var(--gold);
+border-radius:10px;
+margin-bottom:8px;
+}
+
+h2{
+font-size:18px;
+color:var(--navy);
+margin:0 0 8px;
+}
+
+form{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+align-items:end;
+}
+
+label{
+font-size:12px;
+color:var(--navy);
+font-weight:600;
+}
+
+input,textarea{
+width:100%;
+padding:5px;
+border:1px solid #ccc;
+border-radius:4px;
+box-sizing:border-box;
+}
+
+textarea{
+height:60px;
+resize:none;
+}
+
+button{
+height:30px;
+background:var(--navy);
+color:white;
+border:1px solid var(--gold);
+border-radius:15px;
+cursor:pointer;
+}
+
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:13px;
+}
+
+th{
+background:var(--navy);
+color:white;
+border:1px solid var(--gold);
+padding:5px;
+}
+
+td{
+border:1px solid var(--gold);
+padding:5px;
+text-align:center;
+}
+
+img{
+width:80px;
+height:50px;
+object-fit:cover;
+}
+
+.delete{
+color:red;
+}
+
+
+@media(max-width:768px){
+
+.container-box{
+margin-left:0;
+}
+
+form{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+
+<div class="container-box">
+
+
+<div class="card">
+
+<h2>Manage About Section</h2>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+
+<div>
+<label>Image</label>
+<input type="file" name="image">
+</div>
+
+
+<div>
+<label>Title</label>
+<input type="text"
+name="title"
+value="{{about.0.title}}">
+</div>
+
+
+<div>
+<label>Description</label>
+<textarea name="description">{{about.0.description}}</textarea>
+</div>
+
+
+<button type="submit">
+Save
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+<div class="card">
+
+
+<h2>About Data</h2>
+
+
+<table>
+
+<tr>
+<th>Image</th>
+<th>Title</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+
+
+{% for item in about %}
+
+<tr>
+
+<td>
+<img src="{{item.image.url}}">
+</td>
+
+
+<td>
+{{item.title}}
+</td>
+
+
+<td>
+{{item.description}}
+</td>
+
+
+<td>
+
+<a href="{% url 'delete_about' item.id %}"
+class="delete"
+onclick="return confirm('Delete About?')">
+
+<i class="fa-solid fa-trash"></i>
+
+</a>
+
+</td>
+
+</tr>
+
+
+{% empty %}
+
+<tr>
+<td colspan="4">
+No Data Found
+</td>
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+</div>
+
+
+</div>

@@ -1,0 +1,145 @@
+<link rel="stylesheet" href="/static/website/css/quetion_solvingUI.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script src="https://kit.fontawesome.com/c66fa3da3e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>   
+<div class="container-fluid p-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <span class="fs-3 fw-bold ms-3">
+                Mock Test - 01
+            </span>
+        </div>
+
+        <button class="btn btn-danger" onclick="submitTest()">
+            Submit Test
+        </button>
+     
+    </div>
+
+    <div class="row">
+
+        <!-- Question Palette -->
+        <div class="col-lg-3 mb-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">
+                        Questions
+                    </h5>
+
+                    <div id="questionPalette"
+                         class="d-flex flex-wrap gap-2">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Question Area -->
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between">
+
+                        <h5 class="text-primary">
+                            Mathematics
+                        </h5>
+
+                        <button class="btn btn-warning"
+                                onclick="markForReview()">
+                            Mark For Review
+                        </button>
+
+                    </div>
+
+                    <hr>
+
+                    <h6 id="questionNumber"></h6>
+
+                    <h4 id="questionText" class="my-4"></h4>
+
+                    <div id="options"></div>
+
+                    <div class="d-flex justify-content-between mt-4">
+
+                        <button class="btn btn-outline-secondary"
+                                onclick="previousQuestion()">
+                            Previous
+                        </button>
+
+                        <button class="btn btn-primary"
+                                onclick="nextQuestion()">
+                            Save & Next
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Panel -->
+        <div class="col-lg-3">
+
+            <div class="card shadow-sm border-0 mb-3">
+
+                <div class="card-body text-center">
+
+                    <h5>Time Left</h5>
+
+                    <h2 id="timer" class="text-danger">
+                        30:00
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h5>Summary</h5>
+
+                    <hr>
+
+                    <p>Total Questions:
+                        <span id="totalQuestions"></span>
+                    </p>
+
+                    <p>Attempted:
+                        <span id="attemptedCount"></span>
+                    </p>
+
+                    <p>Remaining:
+                        <span id="remainingCount"></span>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/website/js/quetion_solivingUI.js"></script>

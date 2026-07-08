@@ -1,0 +1,642 @@
+{% include 'admin/navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="slider.css">
+</head>
+<body>
+    {% include 'admin/navbar.html' %}
+<style>
+.container{
+    margin-top:80px;
+    margin-left:300px;
+}
+
+.admin-dashboard{
+    margin-top:90px;
+    padding:30px;
+    width:100%;
+    box-sizing:border-box;
+}
+
+
+
+/* cards */
+
+.top-cards{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+.card h3{
+
+    margin:0;
+
+    color:#777;
+
+}
+
+
+
+.card p{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+}
+
+
+
+
+
+/* charts */
+
+.charts{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+
+
+.chart-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+.chart-box h2{
+
+    color:#5b2700;
+
+}
+
+
+
+canvas{
+
+    max-height:350px;
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+.admin-dashboard{
+
+margin-left:0;
+
+width:100%;
+
+}
+
+
+.top-cards{
+
+grid-template-columns:1fr;
+
+}
+
+
+.charts{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    min-height:100vh;
+}
+
+
+.container{
+    margin-top:80px;
+    margin-left:280px;
+    padding:20px;
+}
+
+.admin-dashboard{
+    animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+.top-cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    padding:25px;
+    border-radius:20px;
+    color:#fff;
+    transition:.3s ease;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+
+.card:nth-child(1){
+    background:linear-gradient(135deg,#215AE3,#4F7EFF);
+}
+
+.card:nth-child(2){
+    background:linear-gradient(135deg,#EA580C,#FF8A4D);
+}
+
+.card:nth-child(3){
+    background:linear-gradient(135deg,#10B981,#34D399);
+}
+
+.card:nth-child(4){
+    background-color: #1E293B;
+}
+
+
+.card::after{
+    content:'';
+    position:absolute;
+    top:-100%;
+    left:-120%;
+    width:50%;
+    height:250%;
+    background:rgba(255,255,255,.18);
+    transform:rotate(25deg);
+}
+
+.card:hover::after{
+    animation:shine .8s linear;
+}
+
+@keyframes shine{
+    100%{
+        left:160%;
+    }
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.18);
+}
+
+.course-card h3{
+    color:#215AE3;
+    font-weight:700;
+}
+
+.course-card p{
+    color:#334155;
+    font-weight:500;
+}
+
+.course-card li{
+    color: black;
+}   
+
+/* Charts */
+
+.charts{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-top:30px;
+}
+
+.chart-box{
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s ease;
+    animation:slideUp .8s ease;
+}
+
+.chart-box:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(33,90,227,.12);
+}
+
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.chart-box h2{
+    color:#215AE3;
+    margin-bottom:20px;
+    position:relative;
+    font-size:22px;
+}
+
+.chart-box h2::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:70px;
+    height:3px;
+    background:#EA580C;
+    border-radius:20px;
+}
+
+canvas{
+    max-height:350px;
+}
+
+
+@media(max-width:1200px){
+
+    .top-cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:992px){
+
+    .container{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .charts{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .top-cards{
+        grid-template-columns:1fr;
+    }
+
+    .card p{
+        font-size:28px;
+    }
+
+    .chart-box h2{
+        font-size:18px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .container{
+        margin-top:70px;
+        padding:10px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+}
+
+:root{
+    --orange:#EA580C;
+    --cream:#FFFAF4;
+    --blue:#215AE3;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #FFFAF4 0%,
+        #FFF6EE 50%,
+        #FDF1E8 100%
+    );
+    font-family:'Poppins',sans-serif;
+}
+
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid rgba(33,90,227,.08);
+
+    box-shadow:
+    0 15px 35px rgba(33,90,227,.08);
+
+    transition:.4s ease;
+}
+
+
+.card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 25px 50px rgba(33,90,227,.15);
+}
+
+.card h3{
+    color:#FFFFFF !important;
+    font-weight:600;
+}
+
+.card p{
+    color:#FFFFFF !important;
+    font-size:36px;
+    font-weight:700;
+}
+
+
+.chart-box{
+    background:rgba(255,255,255,.95);
+
+    border-radius:22px;
+    padding:25px;
+
+    border:1px solid rgba(33,90,227,.08);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.06);
+
+    transition:.4s;
+}
+
+.chart-box:hover{
+    transform:translateY(-6px);
+}
+
+.chart-box h2{
+    color:#215AE3;
+    position:relative;
+    margin-bottom:20px;
+}
+
+.chart-box h2::after{
+    content:'';
+    position:absolute;
+    bottom:-8px;
+    left:0;
+
+    width:90px;
+    height:4px;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        #215AE3,
+        #EA580C
+    );
+}
+
+
+.btn{
+    background:linear-gradient(
+        135deg,
+        #215AE3,
+        #EA580C
+    );
+
+    color:#fff;
+    border:none;
+    border-radius:50px;
+    padding:12px 30px;
+
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:
+    0 15px 30px rgba(234,88,12,.25);
+}
+
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(
+        #215AE3,
+        #EA580C
+    );
+    border-radius:20px;
+}
+
+
+.card,
+.chart-box{
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+</style>
+<div class="container">
+
+<section class="admin-dashboard">
+
+    <div class="top-cards">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <p>850</p>
+        </div>
+
+        <div class="card">
+            <h3>Courses</h3>
+            <p>25</p>
+        </div>
+
+        <div class="card">
+            <h3>Faculty</h3>
+            <p>40</p>
+        </div>
+
+        <div class="card">
+            <h3>Messages</h3>
+            <p>120</p>
+        </div>
+
+    </div>
+
+
+    <div class="charts">
+
+        <div class="chart-box">
+            <h2>Student Growth</h2>
+            <canvas id="studentChart"></canvas>
+        </div>
+
+
+        <div class="chart-box">
+            <h2>Course Distribution</h2>
+            <canvas id="courseChart"></canvas>
+        </div>
+
+    </div>
+
+
+</section>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+const studentChart = new Chart(
+document.getElementById('studentChart'),
+{
+    type:'line',
+
+    data:{
+        labels:[
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun"
+        ],
+
+        datasets:[
+        {
+            label:"Students",
+
+            data:[
+                100,
+                200,
+                350,
+                450,
+                600,
+                850
+            ],
+
+            borderWidth:3
+        }]
+    }
+});
+
+
+
+
+const courseChart = new Chart(
+document.getElementById('courseChart'),
+
+{
+
+type:'doughnut',
+
+data:{
+
+labels:[
+"Web",
+"Design",
+"Programming",
+"Other"
+],
+
+datasets:[{
+
+data:[
+40,
+25,
+20,
+15
+],
+
+borderWidth:1
+
+}]
+
+}
+
+});
+
+
+</script>
+</body>
+</html>

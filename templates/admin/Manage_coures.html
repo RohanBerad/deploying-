@@ -1,0 +1,212 @@
+{% include 'admin/navbar.html' %}
+<style>
+    .manage-page{
+    margin-left:20%;
+    padding:40px;
+}
+
+.page-title{
+    margin-bottom:35px;
+}
+
+.page-title h2{
+    font-size:36px;
+    font-weight:800;
+    color:#1E3A8A;
+}
+
+.page-title p{
+    color:#666;
+}
+
+.course-admin-card{
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.course-admin-card:hover{
+    transform:translateY(-8px);
+}
+
+.card-header-custom{
+    background:linear-gradient(135deg,#EA580C,#F97316);
+    padding:25px;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.course-number{
+    background:rgba(255,255,255,.2);
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:13px;
+    display:inline-block;
+    margin-bottom:10px;
+}
+
+.card-header-custom h3{
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+}
+
+.course-icon{
+    width:65px;
+    height:65px;
+    background:rgba(255,255,255,.2);
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.card-body-custom{
+    padding:25px;
+}
+
+.info-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    margin-bottom:12px;
+    border-radius:12px;
+    background:#f8fafc;
+}
+
+.info-item i{
+    color:#EA580C;
+    font-size:20px;
+}
+
+.card-footer-custom{
+    display:flex;
+    gap:12px;
+    padding:0 25px 25px;
+}
+
+.update-btn,
+.delete-btn{
+    flex:1;
+    height:48px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.update-btn{
+    background:#1E3A8A;
+    color:#fff;
+}
+
+.delete-btn{
+    background:#dc2626;
+    color:#fff;
+}
+
+.update-btn:hover,
+.delete-btn:hover{
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+@media(max-width:991px){
+
+    .manage-page{
+        margin-left:0;
+        padding:20px;
+    }
+
+}
+</style>
+<div class="container-fluid manage-page">
+
+    <div class="page-title">
+        <h2>Course Management</h2>
+        <p>Manage all available courses from one place</p>
+    </div>
+
+    <div class="row g-4">
+
+        {% for i in data %}
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="course-admin-card">
+
+                <div class="card-header-custom">
+
+                    <div>
+                        <span class="course-number">
+                            #{{forloop.counter}}
+                        </span>
+
+                        <h3>{{i.header}}</h3>
+                    </div>
+
+                    <div class="course-icon">
+                        <i class="ti ti-school"></i>
+                    </div>
+
+                </div>
+
+                <div class="card-body-custom">
+
+                    <div class="info-item">
+                        <i class="ti ti-users"></i>
+                        <span>Registrations : 0</span>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="ti ti-currency-rupee"></i>
+                        <span>{{i.fee}}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="ti ti-clock"></i>
+                        <span>{{i.total_time}} Months</span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer-custom">
+
+                    <a href="{% url 'update_manage' i.id %}"
+                       class="update-btn">
+
+                        <i class="ti ti-edit"></i>
+                        Update
+
+                    </a>
+
+                    <a href="{% url 'delete_manage' i.id %}"
+                       class="delete-btn">
+
+                        <i class="ti ti-trash"></i>
+                        Delete
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% include 'admin/footer.html' %}

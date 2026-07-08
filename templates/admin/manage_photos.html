@@ -1,0 +1,145 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Manage Photos</title>
+
+<style>
+
+body{
+background:#F8F5F0;
+font-family:Poppins,sans-serif;
+}
+
+.container{
+
+margin:120px auto;
+max-width:1100px;
+background:white;
+padding:25px;
+border-radius:20px;
+border:1px solid #D4AF37;
+
+}
+
+h2{
+color:#14213D;
+border-bottom:2px solid #D4AF37;
+padding-bottom:10px;
+}
+
+
+.photo-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+
+}
+
+
+.card{
+
+padding:10px;
+border:1px solid #ddd;
+border-radius:12px;
+text-align:center;
+
+}
+
+
+img{
+
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:10px;
+
+}
+
+
+button,.btn-delete{
+
+margin-top:10px;
+background:#14213D;
+color:white;
+padding:8px 15px;
+border:0;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h2>Manage Photo Gallery</h2>
+
+
+<div class="photo-grid">
+
+
+{% for photo in photos %}
+
+
+<div class="card">
+
+
+<img src="{{photo.image.url}}">
+
+
+<form action="{% url 'delete_photo' photo.id %}" method="POST" onsubmit="return confirmDelete()">
+
+{% csrf_token %}
+
+<button>
+Delete
+</button>
+
+
+</form>
+
+
+</div>
+
+
+{% empty %}
+
+<p>No Photos</p>
+
+{% endfor %}
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function confirmDelete(){
+
+return confirm("Delete this photo?");
+
+}
+
+</script>
+
+
+</body>
+</html>

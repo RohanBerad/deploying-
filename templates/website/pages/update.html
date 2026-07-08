@@ -1,0 +1,174 @@
+{% include "website/pages/navbar.html" %}
+    <body>
+        <section class="latest-updates">
+
+            <div class="section-heading">
+                <span>📢 ताज्या घडामोडी</span>
+                <h2>Latest Updates</h2>
+                <p>अकॅडमीतील सर्व महत्वाच्या सूचना व अपडेट्स</p>
+            </div>
+
+            <div class="updates-grid">
+
+                <!-- New Batch -->
+                <div class="update-card">
+                    <div class="update-header" onclick="toggleUpdate(this)">
+                        <div>
+                            <h3>🎓 नवीन बॅच</h3>
+                            <small>नोंदणी सुरू</small>
+                        </div>
+                        <span class="plus">+</span>
+                    </div>
+
+                    <div class="update-body">
+                        <p>
+                            पोलीस भरती, MPSC, तलाठी आणि सरळसेवा परीक्षांसाठी
+                            नवीन बॅचची प्रवेश प्रक्रिया सुरू झाली आहे.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Exam -->
+                <div class="update-card">
+                    <div class="update-header" onclick="toggleUpdate(this)">
+                        <div>
+                            <h3>📝 परीक्षा सूचना</h3>
+                            <small>महत्वाचे अपडेट</small>
+                        </div>
+                        <span class="plus">+</span>
+                    </div>
+
+                    <div class="update-body">
+                        <p>
+                            आगामी परीक्षांचे वेळापत्रक, हॉलतिकीट व अभ्यासक्रम
+                            याबाबत नवीन सूचना प्रकाशित करण्यात आल्या आहेत.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="update-card">
+                    <div class="update-header" onclick="toggleUpdate(this)">
+                        <div>
+                            <h3>🏆 निकाल जाहीर</h3>
+                            <small>नवीन निकाल</small>
+                        </div>
+                        <span class="plus">+</span>
+                    </div>
+
+                    <div class="update-body">
+                        <p>
+                            मागील बॅचमधील विद्यार्थ्यांचा निकाल जाहीर करण्यात
+                            आला असून अनेक विद्यार्थ्यांनी यश संपादन केले आहे.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Admission -->
+                <div class="update-card">
+                    <div class="update-header" onclick="toggleUpdate(this)">
+                        <div>
+                            <h3>📚 प्रवेश सूचना</h3>
+                            <small>Admission Open</small>
+                        </div>
+                        <span class="plus">+</span>
+                    </div>
+
+                    <div class="update-body">
+                        <p>
+                            नवीन प्रवेशासाठी अर्ज सुरू झाले आहेत.
+                            मर्यादित जागा उपलब्ध आहेत.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event -->
+                <div class="update-card">
+                    <div class="update-header" onclick="toggleUpdate(this)">
+                        <div>
+                            <h3>🎉 कार्यक्रम अपडेट्स</h3>
+                            <small>Seminar & Workshop</small>
+                        </div>
+                        <span class="plus">+</span>
+                    </div>
+
+                    <div class="update-body">
+                        <p>
+                            विद्यार्थ्यांसाठी प्रेरणादायी सेमिनार आणि
+                            करिअर मार्गदर्शन कार्यशाळेचे आयोजन करण्यात येणार आहे.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="features-section">
+
+            <div class="section-title">
+                <span>🚀 विशेष सुविधा</span>
+                <h2>Latest Features</h2>
+                <p>विद्यार्थ्यांसाठी उपलब्ध आधुनिक व उपयुक्त सुविधा</p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card" onclick="toggleFeature(this)">
+                    <div class="feature-icon">📂</div>
+                    <h3>श्रेणी फिल्टर</h3>
+
+                    <div class="feature-content">
+                        <p>
+                            पोलीस भरती, MPSC, तलाठी, सरळसेवा
+                            अशा विविध श्रेणींनुसार पोस्ट फिल्टर करता येतात.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card" onclick="toggleFeature(this)">
+                    <div class="feature-icon">🔍</div>
+                    <h3>शोध सुविधा</h3>
+
+                    <div class="feature-content">
+                        <p>
+                            आवश्यक माहिती, नोटीस किंवा ब्लॉग पोस्ट
+                            काही क्षणांत शोधता येते.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card" onclick="toggleFeature(this)">
+                    <div class="feature-icon">📤</div>
+                    <h3>शेअर पर्याय</h3>
+
+                    <div class="feature-content">
+                        <p>
+                            महत्वाच्या पोस्ट मित्रांसोबत
+                            WhatsApp, Telegram आणि Facebook वर शेअर करा.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card" onclick="toggleFeature(this)">
+                    <div class="feature-icon">📚</div>
+                    <h3>संबंधित पोस्ट</h3>
+
+                    <div class="feature-content">
+                        <p>
+                            वाचत असलेल्या विषयाशी संबंधित
+                            इतर उपयुक्त लेख आपोआप दाखवले जातात.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </body>
+
+  {% include "website/pages/footer.html" %}

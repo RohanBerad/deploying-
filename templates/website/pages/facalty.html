@@ -1,0 +1,156 @@
+{% include "website/pages/navbar.html" %}
+<style>
+:root{--primary:#EA580C;--secondary:#1E3A8A;--bg:#FAFAFA;}
+.banner{background:linear-gradient(rgba(0,51,102,.65),rgba(0,102,204,.35)),url("https://gkftii.com/assets/img/faculty/faculty.jpg");background-size:cover;background-position:center;height:260px;}
+.facultySection{padding:80px 20px;background:var(--bg);}
+.sectionTitle{text-align:center;margin-bottom:40px;}
+.sectionTitle span{color:var(--secondary);font-weight:600;}
+.sectionTitle h2{color:var(--secondary);font-size:36px;}
+.facultyCard{max-width:1100px;margin:40px auto;display:flex;background:#fff;box-shadow:0 8px 25px rgba(0,0,0,.06);overflow:hidden;align-items:stretch;}
+.infoSide{flex:1.2;padding:25px;}
+.infoSide h3{color:var(--secondary);margin:0;}
+.role{color:var(--primary);font-weight:600;margin-bottom:10px;}
+.aboutTitle{margin-top:10px;font-weight:600;color:var(--secondary);}
+.description,.about{color:#555;line-height:1.7;margin-top:8px;}
+.imageSide{flex:1;display:flex;flex-direction:column;box-sizing:border-box;justify-content:space-between;}
+.imgWrapper{flex:1;width:100%;}
+.imgWrapper img{width:100%;height:100%;object-fit:cover;display:block;}
+.lowerInfoBar{display:flex;justify-content:space-between;align-items:center;margin-top:20px;background:#fff;width:100%;}
+.statsContainer{display:flex;gap:25px;border-right:1px solid #e5e7eb;padding-right:25px;}
+.statItem{display:flex;flex-direction:column;}
+.statNumber{font-size:20px;font-weight:700;color:var(--secondary);line-height:1.2;}
+.statLabel{font-size:11px;color:#6b7280;margin-top:2px;}
+.addReviewBtn{background:var(--secondary);color:#fff;border:none;padding:10px 20px;font-weight:500;cursor:pointer;transition:background 0.2s;white-space:nowrap;}
+.addReviewBtn:hover{background:#111827;}
+.reviewModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.6);backdrop-filter:blur(4px);justify-content:center;align-items:center;z-index:999;opacity:0;transition:opacity 0.3s ease;}
+.reviewModal.show{display:flex;opacity:1;}
+.reviewModalContent{background:#fff;width:90%;max-width:440px;padding:30px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);position:relative;transform:scale(0.95);transition:transform 0.3s ease;}
+.reviewModal.show .reviewModalContent{transform:scale(1);}
+.reviewModalContent h3{margin:0 0 20px 0;color:var(--secondary);font-size:22px;font-weight:700;}
+.reviewModalContent input,.reviewModalContent textarea{width:100%;padding:12px 16px;margin-bottom:16px;box-sizing:border-box;border:1px solid #E2E8F0;font-size:14px;transition:all 0.2s;background:#F8FAFC;}
+.reviewModalContent input:focus,.reviewModalContent textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(234,88,12,0.15);}
+.submitReviewBtn{width:100%;background:var(--primary);color:#fff;border:none;padding:14px;cursor:pointer;font-weight:600;font-size:15px;transition:background 0.2s;}
+.submitReviewBtn:hover{background:#EA580C;filter:brightness(0.9);}
+.closeModal{position:absolute;top:20px;right:20px;cursor:pointer;font-size:24px;color:#94A3B8;transition:color 0.2s;line-height:1;}
+.closeModal:hover{color:#475569;}
+@media(max-width:768px){.facultyCard{flex-direction:column;}.imgWrapper{height:280px;}.lowerInfoBar{flex-direction:column;gap:15px;align-items:flex-start;}.statsContainer{border-right:none;padding-right:0;width:100%;}.addReviewBtn{width:100%;text-align:center;}}
+.allReviewsTitle{color:#1E3A8A;font-size:32px;font-weight:800;text-align:center;letter-spacing:-0.5px;margin-top:50px;margin-bottom:20px;}
+.allReviewsSection{background:#F8FAFC;overflow:hidden;border-bottom:1px solid #E2E8F0;padding:35px 0 30px 0;position:relative;}
+.allReviewsSection::before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(to right,#1E3A8A 0%,#1E3A8A 35%,#D97706 65%,#EA580C 100%);}
+.reviewsMarqueeContainer{overflow:hidden;width:100%;position:relative;display:flex;}
+.reviewsTrack{display:flex;width:max-content;animation:scrollLoop 30s linear infinite;padding:15px 0;}
+.reviewsMarqueeContainer:hover .reviewsTrack{animation-play-state:paused;}
+@keyframes scrollLoop{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.reviewPreview{background:#FFFFFF;border:1px solid #E2E8F0;padding:18px;margin-right:10px;width:420px;min-height:180px;box-sizing:border-box;text-align:left;box-shadow:0 4px 6px -1px rgba(0,0,0,0.02),0 2px 4px -1px rgba(0,0,0,0.02);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;justify-content:flex-start;position:relative;}
+.reviewPreview:hover{transform:translateY(-4px);box-shadow:0 12px 24px -8px rgba(0,0,0,0.08);border-color:#CBD5E1;}
+.reviewHeader{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.avatar{width:44px;height:44px;background:rgba(30,58,138,0.08);color:var(--secondary);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.reviewerMeta h5{margin:0;color:#0F172A;font-size:16px;font-weight:700;line-height:1.2;}
+.reviewerMeta span{display:inline-block;font-size:11px;color:#EA580C;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.reviewPreview p{margin:0;color:#475569;font-size:14.5px;line-height:1.6;font-style:italic;position:relative;z-index:1;padding-right:20px;}
+.quoteIcon{position:absolute;bottom:10px;right:20px;font-size:54px;color:#F1F5F9;font-weight:900;line-height:1;z-index:0;user-select:none;}
+@media(max-width:480px){.reviewPreview{width:300px;padding:10px;}}
+</style>
+
+<section class="banner"></section>
+<section class="facultySection">
+<div class="sectionTitle">
+    <span>Faculty Spotlight</span>
+    <h2>Meet Our Expert Faculty</h2>
+</div>
+{% for faculty in faculty_list %}
+<div class="facultyCard">
+    <div class="infoSide">
+        <h3>{{faculty.name}}</h3>
+        <div class="role">{{faculty.designation}}</div>
+        <div class="aboutTitle">About the Faculty Member</div>
+        <p class="description">{{faculty.description}}</p>
+        <p class="about">{{faculty.about_faculty}}</p>
+        <div class="reviewModal">
+            <div class="reviewModalContent">
+                <span class="closeModal">&times;</span>
+                <h3>Add Review</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="faculty_id" value="{{faculty.id}}">
+                    <input type="text" name="student_name" placeholder="Your Name" required>
+                    <textarea name="review" rows="4" placeholder="Write review..." required></textarea>
+                    <button class="submitReviewBtn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="imageSide">
+        <div class="imgWrapper">
+            {% if faculty.image %}
+            <img src="{{faculty.image.url}}" alt="Faculty">
+            {% endif %}
+        </div>
+        <div class="lowerInfoBar">
+            <div class="statsContainer">
+                <div class="statItem">
+                    <span class="statNumber">{{faculty.years_experience}}+</span>
+                    <span class="statLabel">Years Experience</span>
+                </div>
+                <div class="statItem">
+                    <span class="statNumber">{{faculty.students_guided}}+</span>
+                    <span class="statLabel">Students Trained</span>
+                </div>
+            </div>
+            <button class="addReviewBtn">Add Review</button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</section>
+
+<h2 class="allReviewsTitle">Student Reviews</h2>
+<section class="allReviewsSection">
+    <div class="reviewsMarqueeContainer">
+        <div class="reviewsTrack">
+            {% for faculty in faculty_list %}
+                {% for review in faculty.reviews.all %}
+                    <div class="reviewPreview">
+                        <div class="reviewHeader">
+                            <div class="avatar">
+                                {{ review.student_name|slice:":1"|upper }}
+                            </div>
+                            <div class="reviewerMeta">
+                                <h5>{{ review.student_name }}</h5>
+                                <span>For: {{ faculty.name }}</span>
+                            </div>
+                        </div>
+
+                        <p>"{{ review.review }}"</p>
+                        <div class="quoteIcon">”</div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<script>
+document.querySelectorAll(".addReviewBtn").forEach(btn=>{
+    btn.addEventListener("click",function(){
+        const modal = this.closest(".facultyCard").querySelector(".reviewModal");
+        modal.style.display = "flex";
+        setTimeout(() => modal.classList.add("show"), 10);
+    });
+});
+document.querySelectorAll(".closeModal").forEach(btn=>{
+    btn.addEventListener("click",function(){
+        const modal = this.closest(".reviewModal");
+        modal.classList.remove("show");
+        setTimeout(() => modal.style.display = "none", 300);
+    });
+});
+window.addEventListener("click", function(e) {
+    if (e.target.classList.contains("reviewModal")) {
+        e.target.classList.remove("show");
+        setTimeout(() => e.target.style.display = "none", 300);
+    }
+});
+</script>
+{% include "website/pages/footer.html" %}

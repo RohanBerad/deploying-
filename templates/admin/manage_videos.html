@@ -1,0 +1,126 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Manage Videos</title>
+
+
+<style>
+
+body{
+background:#F8F5F0;
+font-family:Poppins,sans-serif;
+}
+
+
+.container{
+
+margin:120px auto;
+max-width:1100px;
+background:white;
+padding:25px;
+border-radius:20px;
+
+}
+
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+
+}
+
+
+.card{
+
+border:1px solid #ddd;
+padding:15px;
+border-radius:12px;
+
+}
+
+
+video{
+
+width:100%;
+border-radius:10px;
+
+}
+
+
+button{
+
+background:#14213D;
+color:white;
+padding:8px 15px;
+border:0;
+border-radius:8px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h2>Manage Video Gallery</h2>
+
+
+<div class="grid">
+
+
+{% for video in videos %}
+
+
+<div class="card">
+
+
+<video controls>
+
+<source src="{{video.video.url}}">
+
+</video>
+
+
+<form action="{% url 'delete_video' video.id %}" method="POST">
+
+{% csrf_token %}
+
+<button onclick="return confirm('Delete video?')">
+
+Delete
+
+</button>
+
+</form>
+
+
+</div>
+
+
+{% empty %}
+
+<p>No Videos</p>
+
+{% endfor %}
+
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>

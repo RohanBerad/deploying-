@@ -1,0 +1,204 @@
+{% include "admin/navbar.html" %}
+
+<div class="main-content">
+
+    <div class="card custom-card">
+
+        <div class="card-header">
+            <h4 class="mb-0">
+                <i class="ti ti-book"></i>
+                Study Materials List
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle custom-table">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Icon</th>
+                            <th>Title</th>
+                            <th>File</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for i in materials %}
+                        <tr>
+
+                            <td>{{ forloop.counter }}</td>
+
+                            <td>
+                                <i class="{{ i.icons }}"></i>
+                            </td>
+
+                            <td>{{ i.title }}</td>
+
+                            <td>
+                                <a href="{{ i.files.url }}"
+                                   target="_blank"
+                                   class="file-link">
+
+                                    View File
+
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'delete_material' i.id %}"
+                                   class="btn btn-delete">
+
+                                    Delete
+
+                                </a>
+                            </td>
+
+                        </tr>
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                No materials found
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<style>
+
+.main-content{
+    margin-left:310px;
+    padding:30px;
+}
+
+.custom-card{
+    background:linear-gradient(
+        135deg,
+        #08244B,
+        #123A6B
+    );
+
+    border-radius:25px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.card-header{
+    background:rgba(255,255,255,.05);
+
+    border-bottom:1px solid rgba(212,175,55,.15);
+
+    padding:20px 25px;
+}
+
+.card-header h4{
+    color:#fff;
+    font-weight:700;
+}
+
+.custom-table{
+    color:#fff;
+    margin-bottom:0;
+}
+
+.custom-table thead tr{
+    border-bottom:1px solid rgba(212,175,55,.2);
+}
+
+.custom-table th{
+    color:#D4AF37;
+    font-weight:600;
+    padding:15px;
+}
+
+.custom-table td{
+    padding:15px;
+    border-color:rgba(255,255,255,.08);
+}
+
+.custom-table tbody tr{
+    transition:.3s;
+}
+
+.custom-table tbody tr:hover{
+    background:rgba(255,255,255,.05);
+}
+
+.file-link{
+    color:#D4AF37;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.file-link:hover{
+    color:#fff;
+}
+
+.btn-delete{
+    background:#dc3545;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.btn-delete:hover{
+    background:#bb2d3b;
+    color:white;
+}
+
+.empty-row{
+    text-align:center;
+    color:#cbd5e1;
+    padding:30px;
+}
+
+.table-responsive{
+    overflow-x:auto;
+}
+
+@media(max-width:991px){
+
+    .main-content{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .custom-table th,
+    .custom-table td{
+        padding:10px;
+        font-size:13px;
+    }
+
+    .btn-delete{
+        padding:6px 12px;
+        font-size:12px;
+    }
+}
+
+</style>
+
+{% include "admin/footer.html" %}

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dnyanraj Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+      :root {
+        --sidebar: #0b1f3a;
+        --gold: #d4af37;
+        --white: #ffffff;
+        --bg: #f8fafc;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Outfit", sans-serif;
+      }
+      body {
+        background: var(--bg);
+      }
+      /* SIDEBAR */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--sidebar);
+        padding: 25px;
+        overflow-y: auto;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+      .logo-icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        color: #0b1f3a;
+      }
+      .logo h2 {
+        color: white;
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .menu-title {
+        color: #d4af37;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: white;
+        padding: 15px;
+        border-radius: 14px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 17px;
+        transition: 0.3s;
+      }
+      .menu-item:hover,
+      .menu-item.active {
+        background: #d4af37;
+        color: #0b1f3a;
+      }
+
+      .ms-auto {
+        margin-left: auto;
+      }
+
+      /* SUB MENU */
+
+      .submenu {
+        display: none;
+
+        padding-left: 20px;
+
+        margin-bottom: 10px;
+      }
+
+      .submenu a {
+        display: block;
+
+        text-decoration: none;
+
+        color: white;
+
+        padding: 10px;
+
+        border-radius: 10px;
+
+        margin-bottom: 5px;
+
+        font-size: 15px;
+      }
+
+      .submenu a:hover {
+        background: #d4af37;
+        color: #0b1f3a;
+      }
+
+      /* TOP NAV */
+
+      .top-navbar {
+        position: fixed;
+
+        top: 0;
+
+        left: 280px;
+
+        right: 0;
+
+        height: 80px;
+
+        background: white;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        padding: 0 35px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .page-title {
+        color: #0b1f3a;
+
+        font-size: 34px;
+
+        font-weight: 800;
+      }
+
+      .top-right {
+        display: flex;
+
+        align-items: center;
+
+        gap: 15px;
+      }
+
+      .notification-btn {
+        width: 50px;
+
+        height: 50px;
+
+        border: none;
+
+        border-radius: 50%;
+
+        background: #d4af37;
+
+        color: #0b1f3a;
+
+        font-size: 22px;
+      }
+
+      .logout-btn {
+        border: none;
+
+        background: #d4af37;
+
+        color: #0b1f3a;
+
+        padding: 12px 22px;
+
+        border-radius: 12px;
+
+        font-weight: 600;
+      }
+
+      /* SCROLL */
+
+      .sidebar::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: #d4af37;
+
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="ti ti-school"></i>
+        </div>
+        <h2>Dnyanraj</h2>
+      </div>
+      <div class="menu-title">DASHBOARD MENU</div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-layout-dashboard"></i>
+        Dashboard
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+        <a href="{% url 'addhome' %}">Home</a>
+        <a href="{% url 'manage_stats' %}"> Homepage stats </a>
+        <a href="{% url 'manage_about' %}"> About </a>
+
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-headset"></i>
+        Student Support
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+       
+
+
+
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-photo"></i>
+        Gallery
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+        <a href="{% url 'add_photo' %}"> Add Photo </a>
+        <a href="{% url 'add_video' %}"> Add Video </a>
+        <a href="{% url 'add_album' %}"> Add Album </a>
+        <a href="{% url 'add_achievement' %}"> Add Achievement </a>
+        <a href="{% url 'manage_photos' %}"> Manage Photos </a>
+        <a href="{% url 'manage_videos' %}"> Manage Videos </a>
+        <a href="{% url 'manage_albums' %}"> Manage Albums </a>
+        <a href="{% url 'manage_achievements' %}"> Manage Achievements </a>
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-book"></i>
+        Books & Notes
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+        <a href="/admin/study-matrial/"> Add Materials </a>
+        <a href="/admin/study_list/"> Manage Materials </a>
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-user-star"></i>
+        Faculty
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+        <a href="{% url 'faculty' %}"> Add Faculty </a>
+        <a href="{% url 'manage_faculty' %}"> Manage Faculty </a>
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-bookmarks"></i>
+        Courses
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+        <a href="{% url 'Allcourses' %}"> Add Course </a>
+        <a href="{% url 'Manage_coures' %}"> Manage Course </a>
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-news"></i>
+        Blog
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+      <div class="submenu">
+       
+
+
+
+      </div>
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-refresh"></i>
+        Update
+
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+
+      <div class="submenu">
+        
+
+
+
+
+
+      </div>
+
+      <div class="menu-item dropdown-btn">
+        <i class="ti ti-trophy"></i>
+
+        Results
+
+        <i class="ti ti-chevron-down ms-auto"></i>
+      </div>
+
+      <div class="submenu">
+      
+
+
+          <i class="ti ti-award"></i>
+          All Students
+        </a>
+      </div>
+    </div>
+
+    <div class="top-navbar">
+      <div class="page-title">Dashboard</div>
+
+      <div class="top-right">
+        <button class="notification-btn">
+          <i class="ti ti-bell"></i>
+        </button>
+
+        <button class="logout-btn">
+          <i class="ti ti-logout"></i>
+
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".dropdown-btn").forEach(function (button) {
+        button.onclick = function () {
+          let submenu = this.nextElementSibling;
+
+          if (submenu && submenu.classList.contains("submenu")) {
+            submenu.style.display =
+              submenu.style.display === "block" ? "none" : "block";
+          }
+        };
+      });
+    </script>
+  </body>
+</html>

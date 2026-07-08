@@ -1,0 +1,348 @@
+{% load static %}
+{% include 'admin/navbar.html' %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Gallery Data</title>
+
+  <link rel="stylesheet" href="{% static 'admin/gallrymanage.css' %}" />
+
+  <style>
+    /* ================= GLOBAL LAYOUT FIX ================= */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f6f6f6;
+    }
+
+    .admin-layout-wrapper {
+      margin-top:60px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .table-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #682404;
+    }
+
+    /* ================= TABLE ================= */
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .admin-table th {
+      background: #f7f7f7;
+    }
+
+    /* ================= PHOTO GRID ================= */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+    }
+
+    .photo-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* ================= IMAGES ================= */
+    .thumb {
+      width: 50px;
+      height: 40px;
+      object-fit: cover;
+      margin: 2px;
+      border-radius: 4px;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* ================= SEARCH ================= */
+    .search-box {
+      width: 320px;
+      padding: 10px;
+      border: 1px solid #682404;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    /* ================= BUTTON ================= */
+    .btn-delete {
+      background: #ff4d4d;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* ================= NO RECORD ================= */
+    .no-record {
+      display: none;
+      color: red;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* ================= VIDEO ================= */
+    video {
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="admin-layout-wrapper">
+  <div class="dashboard-content">
+
+    <!-- ================= PHOTO GALLERY ================= -->
+    <section class="table-container">
+      <h2> Manage Photo Gallery</h2>
+
+      <div class="photo-grid">
+        {% for photo in photos %}
+          {% if photo.image %}
+          <div class="photo-card">
+            <img src="{{ photo.image.url }}" />
+
+            <form action="{% url 'delete_photo' photo.id %}" method="POST"
+              onsubmit="return confirm('Delete this photo?');">
+              {% csrf_token %}
+              <button class="btn-delete">Delete</button>
+            </form>
+          </div>
+          {% endif %}
+        {% empty %}
+          <p>No photos uploaded</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- ================= VIDEO GALLERY ================= -->
+<!-- ================= VIDEO GALLERY ================= -->
+<section class="table-container">
+  <h2>Manage Video Gallery</h2>
+
+  <div class="photo-grid">
+    {% for video in videos %}
+      {% if video.video %}
+      <div class="photo-card">
+
+        <video width="100%" height="140" controls>
+          <source src="{{ video.video.url }}">
+        </video>
+        <form action="{% url 'delete_video' video.id %}" method="POST"
+          onsubmit="return confirm('Delete this video?');">
+          {% csrf_token %}
+          <button class="btn-delete">Delete</button>
+        </form>
+
+      </div>
+      {% endif %}
+    {% empty %}
+      <p>No videos uploaded</p>
+    {% endfor %}
+  </div>
+</section>
+
+    <!-- ================= EVENT ALBUMS ================= -->
+    <section class="table-container">
+      <h2>Manage Event Albums</h2>
+
+      <input type="text" id="albumSearch"
+             class="search-box"
+             placeholder="Search Album Heading..."
+             onkeyup="searchAlbum()">
+
+      <div id="noRecordMessageAlbum" class="no-record">No Record Found</div>
+
+      <table class="admin-table" id="albumTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Heading</th>
+            <th>Images</th>
+            <th>Content</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for album in albums %}
+          <tr>
+            <td>{{album.date}}</td>
+            <td class="album-heading">{{album.heading}}</td>
+
+            <td>
+              {% for img in album.images %}
+                <img src="{{img}}" class="thumb">
+              {% endfor %}
+            </td>
+
+            <td>{{album.content|truncatechars:60}}</td>
+
+            <td>
+              <a href="{% url 'delete_album' album.id %}"
+                 class="btn-delete"
+                 onclick="return confirm('Delete album?');">
+                Delete
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="5">No albums</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= ACHIEVEMENTS ================= -->
+    <section class="table-container">
+      <h2>Student Achievements</h2>
+
+      <input type="text" id="achievementSearch"
+             class="search-box"
+             placeholder="Search Student Name..."
+             onkeyup="searchAchievement()">
+
+      <div id="noRecordMessageAch" class="no-record">No Record Found</div>
+
+      <table class="admin-table" id="achievementTable">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Exam</th>
+            <th>Rank</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for a in achievements %}
+          <tr>
+            <td>
+              <img src="{{a.image.url}}" class="avatar">
+            </td>
+
+            <td class="student-name">{{a.student_name}}</td>
+            <td>{{a.year}}</td>
+            <td>{{a.exam}}</td>
+            <td>{{a.rank_desc}}</td>
+
+            <td>
+              <a href="{% url 'delete_achievement' a.id %}"
+                 class="btn-delete"
+                 onclick="return confirm('Delete achievement?');">
+                Delete
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="6">No achievements</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</div>
+
+<script>
+function searchAchievement() {
+  let filter = document.getElementById("achievementSearch").value.toLowerCase();
+  let rows = document.querySelectorAll("#achievementTable tbody tr");
+  let found = false;
+  rows.forEach(row => {
+    let name = row.querySelector(".student-name");
+    if (name) {
+      if (name.textContent.toLowerCase().includes(filter)) {
+        row.style.display = "";
+        found = true;
+      } else {
+        row.style.display = "none";
+      }
+    }
+  });
+
+  document.getElementById("noRecordMessageAch").style.display =
+    found ? "none" : "block";
+}
+
+
+function searchAlbum() {
+  let filter = document.getElementById("albumSearch").value.toLowerCase();
+  let rows = document.querySelectorAll("#albumTable tbody tr");
+
+  let found = false;
+
+  rows.forEach(row => {
+    let heading = row.querySelector(".album-heading");
+
+    if (heading) {
+      if (heading.textContent.toLowerCase().includes(filter)) {
+        row.style.display = "";
+        found = true;
+      } else {
+        row.style.display = "none";
+      }
+    }
+  });
+
+  document.getElementById("noRecordMessageAlbum").style.display =
+    found ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

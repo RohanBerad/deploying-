@@ -1,0 +1,238 @@
+{% include 'admin/navbar.html' %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--navy:#133892;
+--gold:#FF9100;
+}
+
+.container-box{
+padding:2px;
+background:#f8f8f8;
+font-family:sans-serif;
+margin-left:290px;
+margin-top:80px;
+}
+
+.card{
+background:white;
+padding:4px 6px;
+margin-bottom:4px;
+border:1.5px solid var(--gold);
+border-radius:20px;
+}
+
+h2{
+margin:0 0 4px;
+font-size:14px;
+color:var(--navy);
+}
+
+form{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:4px;
+align-items:end;
+}
+
+label{
+display:block;
+font-size:11px;
+color:var(--navy);
+font-weight:600;
+}
+
+input{
+width:100%;
+height:24px;
+padding:2px 5px;
+border:1px solid #ccc;
+border-radius:4px;
+box-sizing:border-box;
+}
+
+button{
+background:var(--navy);
+color:white;
+border:1.5px solid var(--gold);
+height:24px;
+padding:0 15px;
+border-radius:12px;
+cursor:pointer;
+}
+
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:12px;
+}
+
+th{
+background:var(--navy);
+color:white;
+border:1px solid var(--gold);
+padding:3px;
+}
+
+td{
+border:1px solid var(--gold);
+padding:3px;
+text-align:center;
+}
+
+
+.edit{
+color:var(--navy);
+margin-right:8px;
+}
+
+.delete{
+color:red;
+}
+
+
+@media(max-width:768px){
+
+.container-box{
+margin-left:0;
+}
+
+form{
+grid-template-columns:1fr;
+}
+
+}
+</style>
+
+
+<div class="container-box">
+
+
+<div class="card">
+
+<h2>Manage Academy Statistics</h2>
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+<div>
+<label>Trained Students</label>
+<input type="number" 
+name="trained_students"
+value="{{stats.0.trained_students}}">
+</div>
+
+
+<div>
+<label>Selected Officers</label>
+<input type="number"
+name="selected_officers"
+value="{{stats.0.selected_officers}}">
+</div>
+
+
+<div>
+<label>Active Batches</label>
+<input type="number"
+name="active_batches"
+value="{{stats.0.active_batches}}">
+</div>
+
+
+<div>
+<label>Years Excellence</label>
+<input type="number"
+name="years_excellence"
+value="{{stats.0.years_excellence}}">
+</div>
+
+
+<button type="submit">
+Save
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>Statistics</h2>
+
+
+<table>
+
+
+<tr>
+<th>Students</th>
+<th>Officers</th>
+<th>Batches</th>
+<th>Years</th>
+<th>Action</th>
+</tr>
+
+
+
+{% for item in stats %}
+
+<tr>
+
+<td>{{item.trained_students}}</td>
+
+<td>{{item.selected_officers}}</td>
+
+<td>{{item.active_batches}}</td>
+
+<td>{{item.years_excellence}}</td>
+
+
+<td>
+
+<a href="{% url 'manage_stats' %}" class="edit">
+<i class="fa-solid fa-pencil"></i>
+</a>
+
+
+<a href="{% url 'delete_stats' item.id %}"
+class="delete"
+onclick="return confirm('Delete stats?')">
+
+<i class="fa-solid fa-trash"></i>
+
+</a>
+
+
+</td>
+
+</tr>
+
+
+{% empty %}
+
+<tr>
+<td colspan="5">
+No Data Found
+</td>
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+</div>
+
+
+</div>
